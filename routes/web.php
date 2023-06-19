@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\GraduatedController;
 use App\Http\Controllers\Student\FeesController;
 use App\Http\Controllers\Student\FeesInvoicesController;
+use App\Http\Controllers\Student\ReceiptStudentsController;
 
 
 
@@ -90,6 +91,8 @@ Route::group(['middleware'=>['guest']], function () {
             Route::resource('Promotion', PromotionController::class);
 
             Route::resource('Fees_Invoices', FeesInvoicesController::class);
+
+            Route::resource('receipt_students', ReceiptStudentsController::class);
 
             Route::resource('Graduate', GraduatedController::class);
             Route::resource('Fees', FeesController::class);

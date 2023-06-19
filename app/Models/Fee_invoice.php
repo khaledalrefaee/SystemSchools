@@ -34,8 +34,11 @@ class Fee_invoice extends Model
         return $this->belongsTo('App\Models\Student', 'student_id');
     }
 
+   
     public function fees()
     {
         return $this->belongsTo('App\Models\Fees', 'fee_id');
     }
+
+   
 }

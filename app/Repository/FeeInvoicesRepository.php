@@ -48,9 +48,10 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
 
                 // حفظ البيانات في جدول حسابات الطلاب
                 $StudentAccount = new StudentAccount();
+                $StudentAccount->date = date('Y-m-d');
+                $StudentAccount->type = 'invoice';
+                $StudentAccount->fee_invoice_id = $Fees->id;
                 $StudentAccount->student_id = $List_Fee['student_id'];
-                $StudentAccount->Grade_id = $request->Grade_id;
-                $StudentAccount->Classroom_id = $request->Classroom_id;
                 $StudentAccount->Debit = $List_Fee['amount'];
                 $StudentAccount->credit = 0.00;
                 $StudentAccount->description = $List_Fee['description'];
@@ -66,5 +67,62 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     
+    }
+
+    public function edit($id)
+    {
+        $fee_invoices = Fee_invoice::findorfail($id);
+        $fees = Fees::where('Classroom_id',$fee_invoices->Classroom_id)->get();
+        return view('pages.Fees_Invoices.edit',compact('fee_invoices','fees'));
+    }
+
+    public function update($request)
+    {
+        DB::beginTransaction();
+        try {
+            // تعديل البيانات في جدول فواتير الرسوم الدراسية
+            $Fees = Fee_invoice::findorfail($request->id);
+            $Fees->fee_id = $request->fee_id;
+            $Fees->amount = $request->amount;
+            $Fees->description = $request->description;
+            $Fees->save();
+
+            // تعديل البيانات في جدول حسابات الطلاب
+            $StudentAccount = StudentAccount::where('fee_invoice_id',$request->id)->first();
+            $StudentAccount->Debit = $request->amount;
+            $StudentAccount->description = $request->description;
+            $StudentAccount->save();
+            DB::commit();
+
+            toastr()->success(trans('messages.Update'));
+            return redirect()->route('Fees_Invoices.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function destroy($request)
+    {
+        $Fees = $request->id;
+
+try {
+    DB::beginTransaction();
+
+    // حذف سجلات StudentAccount المرتبطة بـ Fee_invoice
+    StudentAccount::where('fee_invoice_id', $Fees)->delete();
+
+    // حذف سجل Fee_invoice
+    Fee_invoice::destroy($Fees);
+
+    DB::commit();
+    toastr()->error(trans('messages.Delete'));
+    }catch (\Exception $e) {
+    DB::rollBack();
+    return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }   
+
+        return redirect()->back();
+
     }
 }
