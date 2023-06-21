@@ -13,6 +13,10 @@ use App\Http\Controllers\Student\GraduatedController;
 use App\Http\Controllers\Student\FeesController;
 use App\Http\Controllers\Student\FeesInvoicesController;
 use App\Http\Controllers\Student\ReceiptStudentsController;
+use App\Http\Controllers\Student\ProcessingFeeController;
+use App\Http\Controllers\Student\PaymentController;
+use App\Http\Controllers\Student\AttendanceController;
+
 
 
 
@@ -94,10 +98,13 @@ Route::group(['middleware'=>['guest']], function () {
 
             Route::resource('receipt_students', ReceiptStudentsController::class);
 
+            Route::resource('ProcessingFee', ProcessingFeeController::class);
+            Route::resource('Payment_students', PaymentController::class);
+            Route::resource('Attendance', AttendanceController::class);
+
             Route::resource('Graduate', GraduatedController::class);
             Route::resource('Fees', FeesController::class);
 
-            
         });
   
 
