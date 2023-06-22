@@ -16,6 +16,8 @@ use App\Http\Controllers\Student\ReceiptStudentsController;
 use App\Http\Controllers\Student\ProcessingFeeController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AttendanceController;
+use App\Http\Controllers\Subjects\SubjectController;
+use App\Http\Controllers\Quizzes\QuizzController;
 
 
 
@@ -106,6 +108,12 @@ Route::group(['middleware'=>['guest']], function () {
             Route::resource('Fees', FeesController::class);
 
         });
+         //==============================Quizzes============================
+    
+        Route::resource('Quizzes', QuizzController::class);
+    
+
+    
   
 
 
