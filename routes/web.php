@@ -17,9 +17,12 @@ use App\Http\Controllers\Student\ProcessingFeeController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AttendanceController;
 use App\Http\Controllers\Student\OnlineClasseController;
+use App\Http\Controllers\Student\LibraryController;
 use App\Http\Controllers\Subjects\SubjectController;
 use App\Http\Controllers\Quizzes\QuizzController;
 use App\Http\Controllers\questions\QuestionController;
+use App\Http\Controllers\SettingController;
+
 
 
 
@@ -98,9 +101,18 @@ Route::group(['middleware'=>['guest']], function () {
 
             Route::resource('Promotion', PromotionController::class);
 
+             //==============================online_classes ============================
+
             Route::resource('online_classes', OnlineClasseController::class);
             Route::get('/indirect', [OnlineClasseController::class,'indirectCreate'])->name('indirect.create');
             Route::post('/indirect', [OnlineClasseController::class,'storeIndirect'])->name('indirect.store');
+
+            //==============================library ============================
+
+            Route::get('download_file/{filename}', [LibraryController::class,'downloadAttachment'])->name('downloadAttachment');
+            Route::resource('library', LibraryController::class);
+
+            //==============================Fees_Invoices ============================
 
             Route::resource('Fees_Invoices', FeesInvoicesController::class);
 
@@ -125,7 +137,8 @@ Route::group(['middleware'=>['guest']], function () {
     
         Route::resource('questions', QuestionController::class);
 
-
+    //==============================Setting============================
+    Route::resource('settings', SettingController::class);
     
   
 
