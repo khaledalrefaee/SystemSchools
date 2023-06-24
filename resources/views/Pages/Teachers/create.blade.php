@@ -32,19 +32,19 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
-                            <form action="{{route('Teachers.store')}}" method="post">
+                            <form action="{{route('Teachers.store')}}" method="post" >
                                 @csrf
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="title">{{trans('Teacher_trans.Email')}}</label>
-                                        <input type="email" name="Email" class="form-control">
+                                        <label for="title" >{{trans('Teacher_trans.Email')}}</label>
+                                        <input type="email" name="Email" class="form-control" autocomplete="nope">
                                         @error('Email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col">
                                         <label for="title">{{trans('Teacher_trans.Password')}}</label>
-                                        <input type="password" name="Password" class="form-control">
+                                        <input type="password" name="Password" class="form-control" autocomplete="nope">
                                         @error('Password')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -56,14 +56,14 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="title">{{trans('Teacher_trans.Name_ar')}}</label>
-                                        <input type="text" name="Name_ar" class="form-control">
+                                        <input type="text" name="Name_ar" class="form-control" autocomplete="nope">
                                         @error('Name_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col">
                                         <label for="title">{{trans('Teacher_trans.Name_en')}}</label>
-                                        <input type="text" name="Name_en" class="form-control">
+                                        <input type="text" name="Name_en" class="form-control" autocomplete="nope">
                                         @error('Name_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -102,7 +102,7 @@
                                     <div class="col">
                                         <label for="title">{{trans('Teacher_trans.Joining_Date')}}</label>
                                         <div class='input-group date'>
-                                            <input class="form-control" type="text"  id="datepicker-action" name="Joining_Date" data-date-format="yyyy-mm-dd"  required>
+                                            <input class="form-control" type="text" autocomplete="nope" id="datepicker-action" name="Joining_Date" data-date-format="yyyy-mm-dd"  required>
                                         </div>
                                         @error('Joining_Date')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -114,7 +114,7 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">{{trans('Teacher_trans.Address')}}</label>
                                     <textarea class="form-control" name="Address"
-                                              id="exampleFormControlTextarea1" rows="4"></textarea>
+                                              id="exampleFormControlTextarea1" rows="4" autocomplete="nope"></textarea>
                                     @error('Address')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror

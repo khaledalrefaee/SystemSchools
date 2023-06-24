@@ -5,6 +5,10 @@ use App\Models\Gender;
 use App\Models\Specialization;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Quizze;
+use App\Models\Question;
+use App\Models\Subject;
+use Illuminate\Support\Facades\DB;
 
 class TeacherRepository implements TeacherRepositoryInterface{
 
@@ -66,9 +70,35 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function DeleteTeachers($request)
     {
-        Teacher::findOrFail($request->id)->delete();
-        toastr()->error(trans('messages.Delete'));
-        return redirect()->route('Teachers.index');
+        $Teachers = $request->id;
+
+        try {
+            DB::beginTransaction();
+        
+            // حذف سجلات الأسئلة المرتبطة بالاختبارات
+            $quizzes = Quizze::where('teacher_id', $Teachers)->get();
+            $quizIds = $quizzes->pluck('id')->toArray();
+            Question::whereIn('quizze_id', $quizIds)->delete();
+        
+            // حذف الاختبارات
+            Quizze::where('teacher_id', $Teachers)->delete();
+        
+            Subject::where('teacher_id', $Teachers)->delete();
+        
+            // حذف السجل الخاص بالمعلم
+            Teacher::destroy($Teachers);
+        
+            toastr()->error(trans('messages.Delete'));
+            DB::commit();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+        
+        
     }
+    
 
 }
+

@@ -6,6 +6,9 @@ use App\Models\Grade;
 use App\Models\Quizze;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\Question;
+use Illuminate\Support\Facades\DB;
+
 
 class QuizzRepository implements QuizzRepositoryInterface
 {
@@ -73,12 +76,24 @@ class QuizzRepository implements QuizzRepositoryInterface
 
     public function destroy($request)
     {
+        $quizz = $request->id;
+
         try {
-            Quizze::destroy($request->id);
-            toastr()->error(trans('messages.Delete'));
-            return redirect()->back();
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            DB::beginTransaction();
+              // حذف سجلات StudentAccount المرتبطة بـ Fee_invoice
+              Question::where('quizze_id', $quizz)->delete();
+              
+                Quizze::destroy($request->id);
+                toastr()->error(trans('messages.Delete'));
+                return redirect()->back();
+            }
+    
+            catch (\Exception $e) {
+                DB::rollBack();
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+                }   
+                    return redirect()->back();
         }
-    }
+    
+    
 }

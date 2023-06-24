@@ -97,7 +97,7 @@
                                                             <label for="Name"
                                                                    class="mr-sm-2">{{ trans('Grades_trans.stage_name_ar') }}
                                                                 :</label>
-                                                            <input id="Name" type="text" name="Name"
+                                                            <input id="Name" autocomplete="nope" type="text" name="Name"
                                                                    class="form-control"
                                                                    value="{{ $Grade->getTranslation('Name', 'ar') }}"
                                                                    required>
@@ -110,7 +110,7 @@
                                                                 :</label>
                                                             <input type="text" class="form-control"
                                                                    value="{{ $Grade->getTranslation('Name', 'en') }}"
-                                                                   name="Name_en" required>
+                                                                   name="Name_en" autocomplete="nope" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -119,7 +119,8 @@
                                                             :</label>
                                                         <textarea class="form-control" name="Notes"
                                                                   id="exampleFormControlTextarea1"
-                                                                  rows="3">{{ $Grade->Notes }}</textarea>
+                                                                  rows="3" 
+                                                                  autocomplete="nope">{{ $Grade->Notes }}</textarea>
                                                     </div>
                                                     <br><br>
 
@@ -198,20 +199,20 @@
                             @csrf
                             <div class="row">
                                 <div class="col">
-                                    <label for="Name" class="mr-sm-2">{{ trans('Grades_trans.stage_name_ar') }}
+                                    <label for="Name"  class="mr-sm-2">{{ trans('Grades_trans.stage_name_ar') }}
                                         :</label>
-                                    <input id="Name" type="text" name="Name" class="form-control">
+                                    <input id="Name" autocomplete="nope" type="text" name="Name" class="form-control">
                                 </div>
                                 <div class="col">
                                     <label for="Name_en" class="mr-sm-2">{{ trans('Grades_trans.stage_name_en') }}
                                         :</label>
-                                    <input type="text" class="form-control" name="Name_en">
+                                    <input type="text" class="form-control" autocomplete="nope" name="Name_en">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">{{ trans('Grades_trans.Notes') }}
                                     :</label>
-                                <textarea class="form-control" name="Notes" id="exampleFormControlTextarea1"
+                                <textarea class="form-control" autocomplete="nope" name="Notes" id="exampleFormControlTextarea1"
                                           rows="3"></textarea>
                             </div>
                             <br><br>

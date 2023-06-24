@@ -16,8 +16,10 @@ use App\Http\Controllers\Student\ReceiptStudentsController;
 use App\Http\Controllers\Student\ProcessingFeeController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AttendanceController;
+use App\Http\Controllers\Student\OnlineClasseController;
 use App\Http\Controllers\Subjects\SubjectController;
 use App\Http\Controllers\Quizzes\QuizzController;
+use App\Http\Controllers\questions\QuestionController;
 
 
 
@@ -96,6 +98,10 @@ Route::group(['middleware'=>['guest']], function () {
 
             Route::resource('Promotion', PromotionController::class);
 
+            Route::resource('online_classes', OnlineClasseController::class);
+            Route::get('/indirect', [OnlineClasseController::class,'indirectCreate'])->name('indirect.create');
+            Route::post('/indirect', [OnlineClasseController::class,'storeIndirect'])->name('indirect.store');
+
             Route::resource('Fees_Invoices', FeesInvoicesController::class);
 
             Route::resource('receipt_students', ReceiptStudentsController::class);
@@ -108,10 +114,17 @@ Route::group(['middleware'=>['guest']], function () {
             Route::resource('Fees', FeesController::class);
 
         });
+
+         //==============================subjects============================
+
+        Route::resource('subjects', SubjectController::class);
+
          //==============================Quizzes============================
     
         Route::resource('Quizzes', QuizzController::class);
     
+        Route::resource('questions', QuestionController::class);
+
 
     
   

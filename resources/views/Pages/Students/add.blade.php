@@ -29,21 +29,21 @@
                         </div>
                     @endif
 
-                    <form method="post"  action="{{ route('Students.store') }}" autocomplete="off" enctype="multipart/form-data">
+                    <form method="post"  action="{{ route('Students.store') }}"  enctype="multipart/form-data">
                         @csrf
                         <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{trans('Students_trans.personal_information')}}</h6><br>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.name_ar')}} : <span class="text-danger">*</span></label>
-                                    <input  type="text" name="name_ar"  class="form-control">
+                                    <input  type="text" name="name_ar"  class="form-control" autocomplete="nope">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.name_en')}} : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="name_en" type="text" >
+                                    <input  class="form-control" name="name_en" type="text" autocomplete="nope" >
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.email')}} : </label>
-                                    <input type="email"  name="email" class="form-control" >
+                                    <input type="email"  name="email" autocomplete="nope" class="form-control" >
                                 </div>
                             </div>
 
@@ -103,7 +103,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.Date_of_Birth')}}  :</label>
-                                    <input class="form-control" type="text"  id="datepicker-action" name="Date_Birth" data-date-format="yyyy-mm-dd">
+                                    <input class="form-control" type="text" autocomplete="nope" id="datepicker-action" name="Date_Birth" data-date-format="yyyy-mm-dd">
                                 </div>
                             </div>
 

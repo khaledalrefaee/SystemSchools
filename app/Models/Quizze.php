@@ -18,6 +18,11 @@ class Quizze extends Model
         return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
 
 
     public function subject()

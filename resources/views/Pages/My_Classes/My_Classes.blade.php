@@ -125,6 +125,7 @@
                                                                 :</label>
                                                             <input id="Name" type="text" name="Name"
                                                                    class="form-control"
+                                                                   autocomplete="nope"
                                                                    value="{{ $My_Class->getTranslation('Name_Class', 'ar') }}"
                                                                    required>
                                                             <input id="id" type="hidden" name="id" class="form-control"
@@ -136,7 +137,9 @@
                                                                 :</label>
                                                             <input type="text" class="form-control"
                                                                    value="{{ $My_Class->getTranslation('Name_Class', 'en') }}"
-                                                                   name="Name_en" required>
+                                                                   name="Name_en"
+                                                                   autocomplete="nope"
+                                                                    required>
                                                         </div>
                                                     </div><br>
                                                     <div class="form-group">
@@ -242,7 +245,7 @@
                                                     <label for="Name"
                                                            class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                         :</label>
-                                                    <input class="form-control" type="text" name="Name" />
+                                                    <input class="form-control" autocomplete="nope" type="text" name="Name" />
                                                 </div>
 
 
@@ -250,7 +253,7 @@
                                                     <label for="Name"
                                                            class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
                                                         :</label>
-                                                    <input class="form-control" type="text" name="Name_class_en" />
+                                                    <input class="form-control" autocomplete="nope" type="text" name="Name_class_en" />
                                                 </div>
 
 

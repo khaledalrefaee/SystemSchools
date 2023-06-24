@@ -1,33 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
 
-@khaledalrefaee
-Samir-Gamal
-/
-school-management-system
-Public
-Fork your own copy of Samir-Gamal/school-management-system
-Code
-Issues
-2
-Pull requests
-2
-Actions
-Projects
-Security
-Insights
-school-management-system/resources/views/layouts/main-sidebar.blade.php
-@Samir-Gamal
-Samir-Gamal Form_wizard_Livewire
-Latest commit 7d14b29 on Feb 24, 2021
-History
-1 contributor
-212 lines (187 sloc)  11.8 KB
 
 <div class="container-fluid">
     <div class="row">
@@ -197,6 +168,8 @@ History
         </a>
         <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
             <li> <a href="{{route('Quizzes.index')}}">قائمة الاختبارات</a> </li>
+            <li> <a href="{{route('questions.index')}}">قائمة الاسئلة</a> </li>
+
         </ul>
     </li>
 
@@ -223,9 +196,8 @@ History
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route('online_classes.index')}}">الاتصال مباشر مع زوم</a> </li>
+
                         </ul>
                     </li>
 

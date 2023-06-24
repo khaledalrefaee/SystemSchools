@@ -64,7 +64,7 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StoreTeachers $request)
+    public function destroy(Request $request)
     {
         return $this->Teacher->DeleteTeachers($request);
     }

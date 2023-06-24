@@ -132,6 +132,7 @@
                                                                                                 <input type="text"
                                                                                                        name="Name_Section_Ar"
                                                                                                        class="form-control"
+                                                                                                       autocomplete="nope"
                                                                                                        value="{{ $list_Sections->getTranslation('Name_Section', 'ar') }}">
                                                                                             </div>
 
@@ -144,6 +145,7 @@
                                                                                                        type="hidden"
                                                                                                        name="id"
                                                                                                        class="form-control"
+                                                                                                       autocomplete="nope"
                                                                                                        value="{{ $list_Sections->id }}">
                                                                                             </div>
 
@@ -317,12 +319,12 @@
                                         {{ csrf_field() }}
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" name="Name_Section_Ar" class="form-control"
+                                                <input type="text" autocomplete="nope" name="Name_Section_Ar" class="form-control"
                                                        placeholder="{{ trans('Sections_trans.Section_name_ar') }}">
                                             </div>
 
                                             <div class="col">
-                                                <input type="text" name="Name_Section_En" class="form-control"
+                                                <input type="text" autocomplete="nope" name="Name_Section_En" class="form-control"
                                                        placeholder="{{ trans('Sections_trans.Section_name_en') }}">
                                             </div>
 
