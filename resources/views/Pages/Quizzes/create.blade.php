@@ -67,7 +67,7 @@
                                             <select class="custom-select mr-sm-2" name="teacher_id">
                                                 <option selected disabled>حدد اسم المعلم...</option>
                                                 @foreach($teachers as $teacher)
-                                                    <option  value="{{ $teacher->id }}">{{ $teacher->Name }}</option>
+                                                    <option  value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

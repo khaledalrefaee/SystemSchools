@@ -21,7 +21,7 @@
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-                                <a class="btn btn-warning" href="{{route('indirect.create')}}">اضافة حصة اوفلاين جديدة</a>
+                                <a class="btn btn-warning" href="{{route('online_classes.create')}}">اضافة حصة اوفلاين جديدة</a>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -47,7 +47,7 @@
                                             <td>{{$online_classe->grade->Name}}</td>
                                             <td>{{ $online_classe->classroom->Name_Class }}</td>
                                             <td>{{$online_classe->section->Name_Section}}</td>
-                                                <td>{{$online_classe->user->name}}</td>
+                                                <td>{{$online_classe->created_by}}</td>
                                                 <td>{{$online_classe->topic}}</td>
                                                 <td>{{$online_classe->start_at}}</td>
                                                 <td>{{$online_classe->duration}}</td>

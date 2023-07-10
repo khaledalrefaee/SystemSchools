@@ -22,8 +22,8 @@ class SectionController extends Controller
     $teachers = Teacher::all();
         //      اسم ال fun الموجودة ب Grade
     $Grades = Grade::with(['Section'])->get();
-    $List_Grades =Grade::all();
-    return view('Pages.Sections.Sections',compact('Grades','List_Grades','teachers'));
+    $list_Grades =Grade::all();
+    return view('Pages.Sections.Sections',compact('Grades','list_Grades','teachers'));
 }
 
   /**
@@ -137,7 +137,7 @@ class SectionController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy(StoreSections $request)
+  public function destroy(Request $request)
   {
 
     Section::findOrFail($request->id)->delete();

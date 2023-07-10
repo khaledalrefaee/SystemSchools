@@ -41,16 +41,20 @@ use App\Http\Controllers\SettingController;
 
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::group(['middleware'=>['guest']], function () {
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('selection');
 
-    Route::get('/', function () {
-        return view('auth.login');
-    });
+Route::group(['namespace' => 'Auth'], function () {
+
+    Route::get('/login/{type}',[App\Http\Controllers\Auth\LoginController::class,'loginForm'])->middleware('guest')->name('login.show');
+    
+    Route::post('/login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
+    Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
+
 });
 
-    Route::group(
+Route::group(
         [
             'prefix' => LaravelLocalization::setLocale(),
             'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
@@ -61,8 +65,9 @@ Route::group(['middleware'=>['guest']], function () {
                });
        */
             //==============================Grades============================
-
-            Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+            
+            
+            Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
             Route::resource('/Grades',GradeController::class);
 
             //==============================Classromms============================
@@ -82,7 +87,7 @@ Route::group(['middleware'=>['guest']], function () {
 
              //==============================parents============================
 
-            Route::view('add_parent','livewire.show_Form');
+            Route::view('add_parent','livewire.show_Form')->name('add_parent');
 
 
                 //==============================Teachers============================
@@ -125,7 +130,7 @@ Route::group(['middleware'=>['guest']], function () {
             Route::resource('Graduate', GraduatedController::class);
             Route::resource('Fees', FeesController::class);
 
-        });
+   
 
          //==============================subjects============================
 
@@ -140,7 +145,7 @@ Route::group(['middleware'=>['guest']], function () {
     //==============================Setting============================
     Route::resource('settings', SettingController::class);
     
-  
+});
 
 
 
