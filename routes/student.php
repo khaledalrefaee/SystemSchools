@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Student\dashboard\ExamsController;
+use App\Http\Controllers\Student\dashboard\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,8 @@ Route::group(
         return view('pages.Students.dashboard');
     });
 
+
+   
+        Route::resource('student_exams', ExamsController::class);
+        Route::resource('profile-student', ProfileController::class);
 });

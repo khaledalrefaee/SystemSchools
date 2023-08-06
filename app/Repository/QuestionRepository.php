@@ -31,7 +31,7 @@ class QuestionRepository implements QuestionRepositoryInterface
             $question->quizze_id = $request->quizze_id;
             $question->save();
             toastr()->success(trans('messages.success'));
-            return redirect()->route('questions.create');
+            return redirect()->route('question.create');
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -55,7 +55,7 @@ class QuestionRepository implements QuestionRepositoryInterface
             $question->quizze_id = $request->quizze_id;
             $question->save();
             toastr()->success(trans('messages.Update'));
-            return redirect()->route('questions.index');
+            return redirect()->route('question.index');
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }

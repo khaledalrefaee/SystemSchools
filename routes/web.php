@@ -109,8 +109,8 @@ Route::group(
              //==============================online_classes ============================
 
             Route::resource('online_classes', OnlineClasseController::class);
-            Route::get('/indirect', [OnlineClasseController::class,'indirectCreate'])->name('indirect.create');
-            Route::post('/indirect', [OnlineClasseController::class,'storeIndirect'])->name('indirect.store');
+            Route::get('/indirect/create', [OnlineClasseController::class,'indirectCreate'])->name('indirect.create');
+            Route::post('/indirect/store', [OnlineClasseController::class,'storeIndirect'])->name('indirect.store');
 
             //==============================library ============================
 
@@ -140,7 +140,7 @@ Route::group(
     
         Route::resource('Quizzes', QuizzController::class);
     
-        Route::resource('questions', QuestionController::class);
+        Route::resource('question', QuestionController::class);
 
     //==============================Setting============================
     Route::resource('settings', SettingController::class);
